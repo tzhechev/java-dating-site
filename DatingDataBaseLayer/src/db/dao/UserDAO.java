@@ -11,6 +11,14 @@ public class UserDAO {
 	public UserDAO(){
 		
 	}
+	public User getUserByName(String name){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
+		Query query = hbSession.createQuery("from User where user_name='"+name+"'");
+		User usr = (User)query.uniqueResult();
+		return usr;
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
 		Session hbSession = HibernateSessionManager.getCurrentSession();
