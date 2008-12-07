@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="TestRun">
+  <!-- Database connection settings -->
+  <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+  <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+  <property name="connection.username">DATE</property>
+  <property name="connection.password">date</property>
+  <!-- SQL dialect -->
+  <property name="dialect">org.hibernate.dialect.OracleDialect</property>
+  <property name="format_sql">true</property>
+  <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <!-- Hibernate mappings references -->
+  <mapping class="db.entities.User" resource="db/mappings/User.hbm.xml"/>
+  <mapping class="db.entities.Picture" resource="db/mappings/Message.hbm.xml"/>
+  <mapping class="db.entities.Picture" resource="db/mappings/Picture.hbm.xml"/>
+  <mapping class="db.entities.Picture" resource="db/mappings/Interest.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="db.entities">
+ <class name="Picture" table="USER_PICTURES">
+  <id column="USER_PICTURE_ID" name="PictureId" type="long">
+   <generator class="sequence">
+    <param name="sequence">SEQ_PICTURES</param>
+   </generator>
+  </id>
+  <property name="Picture" type="blob">
+   <column name="USER_PICTURE" not-null="true" sql-type="BLOB"/>
+  </property>
+ </class>
+</hibernate-mapping>

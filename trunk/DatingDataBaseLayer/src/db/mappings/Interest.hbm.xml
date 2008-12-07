@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="db.entities">
+  <class name="Interest" table="USER_INTERESTS">
+  <id column="USER_INTEREST_ID" name="InterestId" type="long">
+   <generator class="sequence">
+    <param name="sequence">SEQ_INTERESTS</param>
+   </generator>
+  </id>
+  <property name="Interest" type="clob">
+   <column name="USER_INTEREST" not-null="true" sql-type="CLOB"/>
+  </property>
+  </class>
+</hibernate-mapping>

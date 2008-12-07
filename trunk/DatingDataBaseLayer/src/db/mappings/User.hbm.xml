@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="db.entities">
+ <class name="User" table="USERS">
+  <id column="USER_ID" name="UserId" type="long">
+   <generator class="sequence">
+    <param name="sequence">SEQ_USERS</param>
+   </generator>
+  </id>
+  <property column="USER_NAME" generated="never" lazy="false"
+   name="Name" not-null="true" type="string"/>
+  <property column="USER_PASSWORD" generated="never" lazy="false"
+   name="Password" not-null="true" type="string"/>
+  <property column="USER_FULLNAME" generated="never" lazy="false"
+   name="FullName" type="string"/>
+  <property column="USER_CITY" generated="never" lazy="false"
+   name="City" type="string"/>
+  <property column="USER_GENDER" generated="never" lazy="false"
+   name="Gender" type="string"/>
+  <property column="USER_AGE" generated="never" lazy="false" name="Age" type="long"/>
+  <property column="USER_STARSIGN" generated="never" lazy="false"
+   name="StarSign" type="string"/>
+  <property column="USER_PROFILE_VISITS" generated="never" lazy="false"
+   name="ProfileVisits" not-null="true" type="long"/>
+  <property column="USER_ONLINE" generated="never" lazy="false"
+   name="Online" not-null="true" type="string"/>
+  <one-to-one class="db.entities.Picture" name="Picture"/>
+  <one-to-one class="db.entities.Interest" name="Interests"/>
+ </class>
+</hibernate-mapping>
