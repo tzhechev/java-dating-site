@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="db.mappings">
+ <class name="db.entities.Message" table="Messages">
+  <id column="MESSAGE_ID" name="MessageId" type="long">
+   <generator class="sequence">
+    <param name="sequence">SEQ_MESSAGES</param>
+   </generator>
+  </id>
+  <property generated="never" lazy="false" name="FromUserId"
+   not-null="true" type="long">
+   <column name="USER_FROM_ID" not-null="true" sql-type="NUMBER" unique="true"/>
+  </property>
+  <property name="ToUserId" type="long">
+   <column name="USER_TO_ID" not-null="true" sql-type="NUMBER"/>
+  </property>
+  <one-to-one class="db.entities.User" foreign-key="USER_ID" name="FromUser"/>
+  <one-to-one class="db.entities.User" foreign-key="USER_ID" name="ToUser"/>
+ </class>
+</hibernate-mapping>
