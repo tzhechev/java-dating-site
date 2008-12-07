@@ -29,37 +29,15 @@ public class TestRun {
 
 			public void execute() {
 				UserDAO userDAO = UserDAOFactory.getUserDAO();
-				List<User> findAll = userDAO.getAllUsers();
-				System.out.println(findAll);
-				System.out.println(findAll.get(0).getPicture());
-				System.out.println(findAll.get(0).getInterests());
+				User usr = userDAO.getUserByName("josh");
+				System.out.println(usr.getFullName());
+				System.out.println(usr.getPassword());
+				System.out.println(usr.getPicture());
+				System.out.println(usr.getInterests());
 			}
 			
 		});
 		
-		Facade.doInTransaction(new TransactionAction() {
-
-			public void execute() {
-				UserDAO userDAO = UserDAOFactory.getUserDAO();
-				List<User> findAll = userDAO.getAllUsers();
-				System.out.println(findAll);
-				System.out.println(findAll.get(0).getPicture());
-				System.out.println(findAll.get(0).getInterests());
-			}
-			
-		});
-		
-		Facade.doInTransaction(new TransactionAction() {
-
-			public void execute() {
-				UserDAO userDAO = UserDAOFactory.getUserDAO();
-				List<User> findAll = userDAO.getAllUsers();
-				System.out.println(findAll);
-				System.out.println(findAll.get(0).getPicture());
-				System.out.println(findAll.get(0).getInterests());
-			}
-			
-		});
 		
 		System.out.println("DONE!");
 	}
