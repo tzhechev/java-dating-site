@@ -8,14 +8,20 @@
     <param name="sequence">SEQ_MESSAGES</param>
    </generator>
   </id>
-  <property generated="never" lazy="false" name="FromUserId"
+   <property generated="never" lazy="false" name="FromUserId"
    not-null="true" type="long">
    <column name="USER_FROM_ID" not-null="true" sql-type="NUMBER" unique="true"/>
   </property>
-  <property name="ToUserId" type="long">
+  <property generated="never" lazy="false" name="ToUserId" type="long">
    <column name="USER_TO_ID" not-null="true" sql-type="NUMBER"/>
   </property>
-  <one-to-one class="db.entities.User" foreign-key="USER_ID" name="FromUser"/>
-  <one-to-one class="db.entities.User" foreign-key="USER_ID" name="ToUser"/>
+  <property generated="never" lazy="false" name="Time">
+   <column name="MESSAGE_TIME" not-null="true"/>
+  </property>
+  <one-to-one class="db.entities.User" name="FromUser"/>
+  <one-to-one class="db.entities.User" name="ToUser"/>
+  <property name="Text" not-null="true" type="string">
+   <column name="MESSAGE_TEXT" not-null="true" sql-type="NVARCHAR2"/>
+  </property>
  </class>
 </hibernate-mapping>
