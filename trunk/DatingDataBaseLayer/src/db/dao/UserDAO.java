@@ -33,6 +33,30 @@ public class UserDAO {
 		hbSession.save(user);
 	}
 	
+	/**
+	 * Updates a User entry in the database.
+	 * @param user The User object to be updated.
+	 */
+	public static void updateUser(User user){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
+		hbSession.update(user);
+	}
+	
+	/**
+	 * Sets the status of a User as online or offline.
+	 * @param user The User object to be set.
+	 * @param online The status.
+	 */
+	public static void setUserOnline(User user, boolean online){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
+		if (online) {
+			user.setOnline("Y");
+		}
+		else {
+			user.setOnline("N");
+		}
+		hbSession.update(user);
+	}
 	
 	/**
 	 * @return A List<User> of all users.

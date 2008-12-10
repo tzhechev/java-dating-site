@@ -68,7 +68,16 @@ public class TestRun {
 				}
 			}
 			
-		});		
+		});
+		
+		Facade.doInTransaction(new TransactionAction() {
+
+			public void execute() {
+				User usr1 = UserDAO.getUserByName("josh");
+				UserDAO.setUserOnline(usr1,true);
+			}
+			
+		});
 		
 		System.out.println("DONE!");
 	}
