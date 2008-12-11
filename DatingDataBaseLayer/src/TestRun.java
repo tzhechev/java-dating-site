@@ -49,9 +49,7 @@ public class TestRun {
 				System.out.println(usr2.getPicture());
 				System.out.println(usr2.getInterests());
 				MessageDAO.addMessage(usr1,usr2,"Muhaha!");
-				
 			}
-			
 		});
 		Facade.doInTransaction(new TransactionAction() {
 
@@ -67,7 +65,6 @@ public class TestRun {
 					System.out.println(m.getText());
 				}
 			}
-			
 		});
 		
 		Facade.doInTransaction(new TransactionAction() {
