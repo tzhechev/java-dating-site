@@ -30,6 +30,8 @@ public class UserDAO {
 	 */
 	public static void addUser(User user){
 		Session hbSession = HibernateSessionManager.getCurrentSession();
+		user.setProfileVisits(0L);
+		user.setOnline("N");
 		hbSession.save(user);
 	}
 	
