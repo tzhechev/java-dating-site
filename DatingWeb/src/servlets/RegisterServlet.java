@@ -48,11 +48,17 @@ import db.session.TransactionAction;
 				String password = request.getParameter("password");
 				String passwordRep = request.getParameter("passConfirm");
 				System.out.println(password);
-				
+				System.out.println("Before block!");
 //				try{
-					if((username!=null)&&(!username.trim().equals(""))){
-						if((password !=null) && (!password.trim().equals(""))){
+				System.out.println("username - "+username);
+				System.out.println("username.trim - "+username.trim());
+				System.out.println("password - "+password);
+				System.out.println("password.trim - "+password.trim());
+				System.out.println("passwordRep - "+passwordRep);
+					if((username!=null)&&(!(username.trim().equals("")))){
+						if((password !=null) && (!(password.trim().equals("")))){
 							if(password.equals(passwordRep)){
+								System.out.println("Entered block!");
 								User user=new User();
 								user.setName(username);
 								user.setPassword(password);
