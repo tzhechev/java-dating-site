@@ -50,8 +50,8 @@ import db.session.TransactionAction;
 				System.out.println(password);
 				
 //				try{
-					if((username!=null)||(!username.trim().equals(""))){
-						if((password !=null) || (!password.trim().equals(""))){
+					if((username!=null)&&(!username.trim().equals(""))){
+						if((password !=null) && (!password.trim().equals(""))){
 							if(password.equals(passwordRep)){
 								User user=new User();
 								user.setName(username);
