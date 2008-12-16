@@ -2,8 +2,9 @@ package db.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import db.entities.User;
 import db.session.HibernateSessionManager;
@@ -19,8 +20,9 @@ public class UserDAO {
 	 */
 	public static User getUserByName(String name){
 		Session hbSession = HibernateSessionManager.getCurrentSession();
-		Query query = hbSession.createQuery("from User where user_name='"+name+"'");
-		User usr = (User)query.uniqueResult();
+//		Query query = hbSession.createQuery("from User where user_name='"+name+"'");
+		Criteria crit = hbSession.createCriteria(User.class).add(Restrictions.eq("user_name", name));
+		User usr = (User)crit.uniqueResult();
 		return usr;
 	}
 	
@@ -66,8 +68,9 @@ public class UserDAO {
 	@SuppressWarnings("unchecked")
 	public static List<User> getAllUsers() {
 		Session hbSession = HibernateSessionManager.getCurrentSession();
-		Query allUsersQuery = hbSession.createQuery("from User");
-		List<User> allUsers = allUsersQuery.list();
+//		Query allUsersQuery = hbSession.createQuery("from User");
+		Criteria crit = hbSession.createCriteria(User.class);
+		List<User> allUsers = crit.list();
 		return allUsers;
 	}
 }
