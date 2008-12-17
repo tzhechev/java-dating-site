@@ -1,4 +1,0 @@
-db.dao
-db.entities
-db.exceptions
-db.session
