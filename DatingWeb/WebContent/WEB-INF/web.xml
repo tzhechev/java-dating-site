@@ -9,6 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <filter>
+    <filter-name>SecurityFilter</filter-name>
+    <filter-class>servlets.SecurityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SecurityFilter</filter-name>
+    <url-pattern>/pages/homePersonal.jsp</url-pattern>
+  </filter-mapping>
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
@@ -58,5 +66,55 @@
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogOffServlet</display-name>
+    <servlet-name>LogOffServlet</servlet-name>
+    <servlet-class>servlets.LogOffServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOffServlet</servlet-name>
+    <url-pattern>/LogOffServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChatServlet</display-name>
+    <servlet-name>ChatServlet</servlet-name>
+    <servlet-class>servlets.ChatServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChatServlet</servlet-name>
+    <url-pattern>/ChatServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewMessagesServlet</display-name>
+    <servlet-name>ViewMessagesServlet</servlet-name>
+    <servlet-class>servlets.ViewMessagesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewMessagesServlet</servlet-name>
+    <url-pattern>/ViewMessagesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TmporaryChat</display-name>
+    <servlet-name>TmporaryChat</servlet-name>
+    <servlet-class>servlets.TmporaryChat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TmporaryChat</servlet-name>
+    <url-pattern>/TmporaryChat</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbaServlet</display-name>
+    <servlet-name>ProbaServlet</servlet-name>
+    <servlet-class>servlets.ProbaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbaServlet</servlet-name>
+    <url-pattern>/ProbaServlet</url-pattern>
   </servlet-mapping>
 </web-app>
