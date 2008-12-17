@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="db.entities">
+  <class name="City" table="USER_CITIES">
+  <id column="USER_CITY_ID" name="CityId" type="long">
+  </id>
+  <property name="City" type="string">
+   <column name="USER_CITY" not-null="true" sql-type="NVARCHAR2"/>
+  </property>
+  </class>
+</hibernate-mapping>

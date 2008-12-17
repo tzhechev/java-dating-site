@@ -18,5 +18,7 @@
   <mapping class="db.entities.Picture" resource="db/mappings/Message.hbm.xml"/>
   <mapping class="db.entities.Picture" resource="db/mappings/Picture.hbm.xml"/>
   <mapping class="db.entities.Picture" resource="db/mappings/Interest.hbm.xml"/>
+  <mapping class="db.entities.Starsign" resource="db/mappings/Starsign.hbm.xml"/>
+  <mapping class="db.entities.City" resource="db/mappings/City.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

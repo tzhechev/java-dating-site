@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="db.entities">
+  <class name="Starsign" table="USER_STARSIGNS">
+  <id column="USER_STARSIGN_ID" name="StarsignId" type="long">
+  </id>
+  <property name="Starsign" type="string">
+   <column name="USER_STARSIGN" not-null="true" sql-type="NVARCHAR2"/>
+  </property>
+  </class>
+</hibernate-mapping>

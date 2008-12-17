@@ -7,8 +7,6 @@ public class Message {
 	private Long fromUserId;
 	private Long toUserId;
 	private String text;
-	private User fromUser;
-	private User toUser;
 	private Date time;
 	public Date getTime() {
 		return time;
@@ -74,34 +72,7 @@ public class Message {
 	public Long getMessageId() {
 		return messageId;
 	}
-	/**
-	 * Use this to set the message sender.
-	 * @param fromUser The User sending the message.
-	 */
-	public void setFromUser(User fromUser) {
-		this.fromUser = fromUser;
-	}
-	/**
-	 * Use this to get the message sender.
-	 * @return The User sending the message.
-	 */
-	public User getFromUser() {
-		return fromUser;
-	}
-	/**
-	 * Use this to set the message receiver.
-	 * @param toUser The User receiving the message.
-	 */
-	public void setToUser(User toUser) {
-		this.toUser = toUser;
-	}
-	/**
-	 * Use this to get the message receiver
-	 * @return The User receiving the message.
-	 */
-	public User getToUser() {
-		return toUser;
-	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Message){

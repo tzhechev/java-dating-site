@@ -9,8 +9,8 @@
     <param name="sequence">SEQ_INTERESTS</param>
    </generator>
   </id>
-  <property name="Interest" type="clob">
-   <column name="USER_INTEREST" not-null="true" sql-type="CLOB"/>
+  <property name="Interest" type="string">
+   <column name="USER_INTEREST" not-null="true" sql-type="NVARCHAR2"/>
   </property>
   </class>
 </hibernate-mapping>
