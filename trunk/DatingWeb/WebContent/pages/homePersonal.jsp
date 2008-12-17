@@ -14,10 +14,26 @@
 		<tbody>
 		<tr>
 			<td align="center">
-					<form action="ViewPersonalInfo" method="post">
-						<input type="submit" value="Edit profile" />
+					<form action="../ViewPersonalInfo" method="post">
+						<input type="submit" value="View profile" />
 					</form>
-				</td>
+			</td>
+			<td align="center">
+					
+					<form method="link" action="/DatingWeb/pages/register.jsp">
+						<input type="submit" VALUE="Change Profile">
+					</form>
+			</td>
+			<td>
+				<form action="../LogOffServlet" method="post">
+						<input type="submit" value="Log off" />
+				</form>
+			</td>
+			<td>
+				<form action="../ChatServlet" method="post">
+						<input type="submit" value="Start Chat" />
+				</form>
+			</td>
 				
 		</tr>
 		</tbody>
