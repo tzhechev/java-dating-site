@@ -93,7 +93,8 @@ public class MessageDAO {
 							Restrictions.eq("ToUserId", usr1.getUserId())
 					)
 				)
-			);
+			)
+			.addOrder(Order.asc("Time"));
 		List<Message> conversation = crit.list();
 		return conversation;
 	}
