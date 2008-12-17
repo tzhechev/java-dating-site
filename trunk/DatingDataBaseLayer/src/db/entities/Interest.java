@@ -3,7 +3,7 @@ package db.entities;
 public class Interest {
 	
 	private Long InterestId;
-	private org.hibernate.lob.SerializableClob Interest;
+	private String Interest;
 	/**
 	 * Used to set InterestID for the current object/row.
 	 * This should only be used by Hibernate itself, do not use this explicitly.
@@ -22,14 +22,14 @@ public class Interest {
 	 * Used to set an interests text block for a user.
 	 * @param interest
 	 */
-	public void setInterest(org.hibernate.lob.SerializableClob interest) {
+	public void setInterest(String interest) {
 		Interest = interest;
 	}
 	/**
 	 * Used to access the interest text block associated with a user.
 	 * @return The interests text block.
 	 */
-	public org.hibernate.lob.SerializableClob getInterest() {
+	public String getInterest() {
 		return Interest;
 	}
 }

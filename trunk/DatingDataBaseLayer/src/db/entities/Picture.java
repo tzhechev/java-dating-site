@@ -4,6 +4,7 @@ package db.entities;
 public class Picture {
 	private Long pictureId;
 	private User user;
+	private Long userId;
 	private org.hibernate.lob.SerializableBlob picture;
 	/**
 	 * This method sets the ID (primary key) for the row in the Pictures table.
@@ -49,5 +50,11 @@ public class Picture {
 	 */
 	public User getUser() {
 		return user;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public Long getUserId() {
+		return userId;
 	}
 }

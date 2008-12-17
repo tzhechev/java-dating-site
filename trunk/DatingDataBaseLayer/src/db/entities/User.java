@@ -11,11 +11,12 @@ public class User {
 	private Long UserId;
 	private String name;
 	private String password;
+	private String email;
 	private String fullName;
-	private String city;
+	private City city;
 	private String gender;
 	private Long age;
-	private String starSign;
+	private Starsign starsign;
 	private Long profileVisits;
 	private String online;
 	private Picture picture;
@@ -56,6 +57,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getEmail() {
+		return email;
+	}
 	/**
 	 * @return
 	 */
@@ -92,18 +99,7 @@ public class User {
 	public void setAge(Long age) {
 		this.age = age;
 	}
-	/**
-	 * @return
-	 */
-	public String getStarSign() {
-		return starSign;
-	}
-	/**
-	 * @param starSign
-	 */
-	public void setStarSign(String starSign) {
-		this.starSign = starSign;
-	}
+
 	/**
 	 * @return
 	 */
@@ -155,15 +151,31 @@ public class User {
 	/**
 	 * @param city
 	 */
-	public void setCity(String city) {
+	/**
+	 * @return the city
+	 */
+	public City getCity() {
+		return city;
+	}
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(City city) {
 		this.city = city;
 	}
 	/**
-	 * @return
+	 * @return the starsign
 	 */
-	public String getCity() {
-		return city;
+	public Starsign getStarsign() {
+		return starsign;
 	}
+	/**
+	 * @param starsign the starsign to set
+	 */
+	public void setStarsign(Starsign starsign) {
+		this.starsign = starsign;
+	}
+
 	
 }
 
