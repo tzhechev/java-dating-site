@@ -54,46 +54,34 @@ public class RegisterServlet extends BaseTransactionalServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		String fullName = request.getParameter("fullName");
-		String gender = request.getParameter("gender");
-		String city = request.getParameter("city");
+//		String username = request.getParameter("username");
+//		String password = request.getParameter("password");
+//		
+//		String fullName = request.getParameter("fullName");
+//		String gender = request.getParameter("gender");
+//		String city = request.getParameter("city");
 
-//		System.out.println(password);
-//		System.out.println("Before block!");
-//		// try{
-//		System.out.println("username - " + username);
-//		System.out.println("username.trim - " + username.trim());
-//		System.out.println("password - " + password);
-//		System.out.println("password.trim - " + password.trim());
-//		System.out.println("passwordRep - " + passwordRep);
-
+//		User onlineUser = (User)request.getSession().getAttribute("onlineUser");
+		User user = new User();
+		if (isOnline(request)){
+			user = (User)request.getSession().getAttribute("onlineUser");
+		}
 		try {
-			if ((username != null) && (!(username.trim().equals("")))) {
-				if ((password != null) && (!(password.trim().equals("")))) {
+			
 						System.out.println("Entered block!");
-						User user = new User();
 						validateAndAddUserName(user, request);
-						validateAndAddPassword(user, request, password);
-						user.setFullName(fullName);
-						if (gender.equals("male")) {
-							user.setGender("M");
-						} else {
-							user.setGender("F");
-						}
-//						user.setCity(city);
+						validateAndAddPassword(user, request);
+						validateAndAddFullName(user, request);
 						validateAndAddAge(user, request);
-						System.out.println(user.getAge());
+						validateAndAddGender(user, request);
+						validateAndAddCity(user, request);
+						validateAndAddStarsign(user, request);
+						validateAndAddInterests(user, request);
+						if(isOnline(request)){
+							UserDAO.updateUser(user);
+						} else{
 						UserDAO.addUser(user);
-//					}
-				}else {
-					throw new InvalidProfileDataException("Въведете парола!");
-				}
-			} else {
-				throw new InvalidProfileDataException("Въведете потребителско име!");
-			}
+						}
 		} catch (InvalidProfileDataException ex) {
 			request.getSession().setAttribute("erroroMsgRegistration",
 					ex.getMessage());
@@ -105,40 +93,74 @@ public class RegisterServlet extends BaseTransactionalServlet {
 
 		}
 
-//		List<User> list = UserDAO.getAllUsers();
-//		for (User item : list) {
-//			System.out.println(item.getName());
-//			System.out.println(item.getFullName());
-//			System.out.println(item.getAge());
-//		}
 
 	}
+	
 
+	
+
+	
+
+	
+
+	
+
+	private boolean isOnline(HttpServletRequest request){
+		User onlineUser = (User)request.getSession().getAttribute("onlineUser");
+		
+		if(onlineUser != null){
+			return true;
+		} else {
+			return false;
+		}
+	}
 	private void validateAndAddUserName(User user, HttpServletRequest request)
 			throws InvalidProfileDataException {
+		if (isOnline(request)) {
+			return;
+		}
 		String username = request.getParameter("username");
 		User us = UserDAO.getUserByName(username);
-		if (us != null) {
-			throw new InvalidProfileDataException(
-					"Вече съществува потребител с такова потребителско име.");
-		} else {
+		if (!validateSpellingOfUserNameOrPassword(username)){
+				throw new InvalidProfileDataException("Потребителското име трябва да съдържа само латински букви, цифри и небуквени символи. Не може да съдържа текст на кирилица.");
+		}
+		else if (us != null){
+				throw new InvalidProfileDataException(
+				"Вече съществува потребител с такова потребителско име.");
+		}
+		else {
 			user.setName(username);
 		}
-
 	}
-	private void validateAndAddPassword(User user, HttpServletRequest request, String password)
+	private boolean validateSpellingOfUserNameOrPassword(String word){
+		String pattern = "[\\x21-\\x7E]*"; //Password consists of non-space ASCII characters
+		if(word == null || !word.matches(pattern)){
+			return false;
+		} else {
+			return true;
+		}
+	}
+	private void validateAndAddPassword(User user, HttpServletRequest request)
 			throws InvalidProfileDataException {
+		String password = request.getParameter("password");
 		String passwordRep = request.getParameter("passConfirm");
-		String pattern = "[\\x21-\\x7E]*";  //Password consists of non-space ASCII characters
-		if(!password.matches(pattern)){
+		if(isOnline(request) && (password == null) && (passwordRep == null)){ //Online user does not want to change password
+			return;
+		}
+		if(!password.equals(passwordRep)){
+			throw new InvalidProfileDataException("Повторението на паролата не съвпада.");
+		} else if (!validateSpellingOfUserNameOrPassword(password)){
 			throw new InvalidProfileDataException(
 			"Паролата трябва да съдържа само латински букви, цифри и небуквени символи. Не може да съдържа текст на кирилица.");
-		} else if (!password.equals(passwordRep)){
-			throw new InvalidProfileDataException("Повторението на паролата не съвпада.");
 			
 		} else {
 			user.setPassword(password);
 		}
+	}
+	private void validateAndAddFullName(User user, HttpServletRequest request) {
+		String fullName = request.getParameter("fullName");
+		user.setFullName(fullName);
+		
 	}
 	private void validateAndAddAge(User user, HttpServletRequest request)
 			throws InvalidProfileDataException {
@@ -149,6 +171,27 @@ public class RegisterServlet extends BaseTransactionalServlet {
 		} catch (NumberFormatException e) {
 			throw new InvalidProfileDataException("Възрастта трябва да е число");
 		}
+	}
+	private void validateAndAddGender(User user, HttpServletRequest request) {
+		String gender = request.getParameter("gender");
+		user.setGender(gender);
+		
+	}
+	private void validateAndAddCity(User user, HttpServletRequest request) {
+		String city = request.getParameter("city");
+		UserDAO.setUserCity(user, city);
+		
+	}
+	private void validateAndAddStarsign(User user, HttpServletRequest request) {
+		String starsign = request.getParameter("starsign");
+		UserDAO.setUserStarsign(user, starsign);
+		
+	}
+	
+	private void validateAndAddInterests(User user, HttpServletRequest request) {
+		String interests = request.getParameter("interests");
+		UserDAO.setUserInterest(user, interests);
+		
 	}
 
 }
