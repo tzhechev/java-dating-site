@@ -127,4 +127,14 @@
     <servlet-name>TopTenServlet</servlet-name>
     <url-pattern>/TopTenServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitializeCityAndGenderServlet</display-name>
+    <servlet-name>InitializeCityAndGenderServlet</servlet-name>
+    <servlet-class>servlets.InitializeCityAndGenderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitializeCityAndGenderServlet</servlet-name>
+    <url-pattern>/InitializeCityAndGenderServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
