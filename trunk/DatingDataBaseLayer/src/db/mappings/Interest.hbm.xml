@@ -12,5 +12,7 @@
   <property name="Interest" type="string">
    <column name="USER_INTEREST" not-null="true" sql-type="NVARCHAR2"/>
   </property>
+     <property column="USER_ID" generated="never" insert="true"
+   lazy="false" name="UserId" type="long" unique="true" update="false"/>
   </class>
 </hibernate-mapping>

@@ -20,28 +20,37 @@ public class TestRun {
 
 			@Override
 			public void execute() {
-				System.out.println(StarsignDAO.getAllStarsigns());
-				System.out.println(CityDAO.getAllCities());
-				System.out.println("==================");
-//				UserDAO.incProfileVisits("john");
-				List<User> list = UserDAO.getTopTenMale();
-				for (User u : list){
-					System.out.println(u.getFullName() + " " + u.getProfileVisits());
-				}
-				System.out.println("==================");
-				list = UserDAO.search("john", null, null);
-				for (User u : list){
-					System.out.println("Search1 result: " + u.getFullName() + " " + u.getProfileVisits());
-				}
-				list = UserDAO.search(null, "София", null);
-				for (User u : list){
-					System.out.println("Search2 result: "+u.getFullName() + " " + u.getProfileVisits());
-				}
-				list = UserDAO.search(null, "Бургас", "skydiving");
-				for (User u : list){
-					System.out.println("Search3 result: "+u.getFullName() + " " + u.getProfileVisits());
-				}
 				
+				User usr = new User();
+				usr.setName("asdf1");
+				usr.setPassword("asdf");
+				UserDAO.addUser(usr);
+				UserDAO.setUserInterest(usr, "blah");
+				UserDAO.updateUser(usr);
+				
+//				UserDAO.setUserInterest(UserDAO.getUserByName("john"), "skydiving! skydiving!");
+//				System.out.println(StarsignDAO.getAllStarsigns());
+//				System.out.println(CityDAO.getAllCities());
+//				System.out.println("==================");
+////				UserDAO.incProfileVisits("john");
+//				List<User> list = UserDAO.getTopTenMale();
+//				for (User u : list){
+//					System.out.println(u.getFullName() + " " + u.getProfileVisits());
+//				}
+//				System.out.println("==================");
+//				list = UserDAO.search("john", null, null);
+//				for (User u : list){
+//					System.out.println("Search1 result: " + u.getFullName() + " " + u.getProfileVisits());
+//				}
+//				list = UserDAO.search(null, "София", null);
+//				for (User u : list){
+//					System.out.println("Search2 result: "+u.getFullName() + " " + u.getProfileVisits());
+//				}
+//				list = UserDAO.search(null, "Бургас", "skydiving");
+//				for (User u : list){
+//					System.out.println("Search3 result: "+u.getFullName() + " " + u.getInterests().getInterest());
+//				}
+//				
 				
 				
 				

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.cfg.HbmBinder;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
@@ -131,12 +132,15 @@ public class UserDAO {
 		return result;
 	}
 	public static void setUserInterest(User usr, String text){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
 		Interest intr = usr.getInterests();
 		if (intr == null) {
 			intr=new Interest();
 		}
 		intr.setInterest(text);
+		intr.setUserId(usr.getUserId());
 		usr.setInterests(intr);
+		hbSession.saveOrUpdate(intr);
 	}
 	@SuppressWarnings("unchecked")
 	public static List<User> getTopTenFemale(){

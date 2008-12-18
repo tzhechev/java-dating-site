@@ -3,6 +3,7 @@ package db.entities;
 public class Interest {
 	
 	private Long interestId;
+	private Long userId;
 	private String interest;
 	/**
 	 * Used to set InterestID for the current object/row.
@@ -31,5 +32,11 @@ public class Interest {
 	 */
 	public String getInterest() {
 		return interest;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public Long getUserId() {
+		return userId;
 	}
 }
