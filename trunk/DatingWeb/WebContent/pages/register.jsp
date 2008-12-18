@@ -21,7 +21,14 @@ textarea {
 	<a href="../LogOffServlet">Log out</a>
 </c:if></div>
 <center>
+<c:choose>
+<c:when test="${onlineUser != null}">
+<h1>Промяна на профил</h1>
+</c:when>
+<c:otherwise>
 <h1>Регистрация</h1>
+</c:otherwise>	
+</c:choose>
 </center>
 
 <div style="color: red"><c:if
@@ -35,8 +42,14 @@ textarea {
 
 	<tr>
 		<td align="right">Потребителско име*</td>
-		<td><input type="text" name="username"
-			value="${sessionScope.onlineUser.name }" /></td>
+		<td><c:choose>
+				<c:when test="${onlineUser != null}"><input type="text" name="username"
+			value="${sessionScope.onlineUser.name }" readonly="readonly" /></c:when>
+			<c:otherwise>
+			<input type="text" name="username"/>
+			</c:otherwise>
+			</c:choose>
+		</td>
 	</tr>
 	<tr>
 		<td align="right">Парола*</td>
@@ -44,7 +57,7 @@ textarea {
 	</tr>
 	<tr>
 		<td align="right">Потвърди парола*</td>
-		<td><input type="text" name="passConfirm" /></td>
+		<td><input type="password" name="passConfirm" /></td>
 	</tr>
 
 	<tr>
@@ -57,10 +70,8 @@ textarea {
 			value="${sessionScope.onlineUser.age}" /></td>
 	<tr>
 		<td align="right">Пол*</td>
-		<td><select name="gender">
-			<option value="female"><c:out value="female" /></option>
-			<option value="male"><c:out value="male" /></option>
-		</select></td>
+		<td><dr:genderMenu /></td>
+		
 	</tr>
 	<tr>
 		

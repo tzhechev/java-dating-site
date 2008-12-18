@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,19 +30,28 @@
 			</tr>
 		</table>
 		</form>
+		<form action="../InitializeCityAndGenderServlet" method="post">
+		<table>
+			<tr>
+				<td>
+				<td><input type="submit" value="Register" /></td>
+			</tr>
+		</table>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<form action="../TopTenServlet" method="post">
-			<table><tr>
-			<td><select name="gender">
-			<option value="female"><c:out value="female" /></option>
-			<option value="male"><c:out value="male" /></option>
-			</select></td>
-			<input type="submit" value="Search top 10" />
-			</tr></table>
-			</form>
+		<form action="../TopTenServlet" method="post">
+		<table>
+			<tr>
+				<td><select name="gender">
+					<option value="female"><c:out value="female" /></option>
+					<option value="male"><c:out value="male" /></option>
+				</select></td>
+				<input type="submit" value="Search top 10" />
+			</tr>
+		</table>
+		</form>
 		</td>
 	</tr>
 </table>
