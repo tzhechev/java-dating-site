@@ -62,9 +62,12 @@ public class RegisterServlet extends BaseTransactionalServlet {
 //		String city = request.getParameter("city");
 
 //		User onlineUser = (User)request.getSession().getAttribute("onlineUser");
-		User user = new User();
+		User user = null;
 		if (isOnline(request)){
 			user = (User)request.getSession().getAttribute("onlineUser");
+		}
+		else {
+			user = new User();
 		}
 		try {
 			
@@ -74,14 +77,15 @@ public class RegisterServlet extends BaseTransactionalServlet {
 						validateAndAddFullName(user, request);
 						validateAndAddAge(user, request);
 						validateAndAddGender(user, request);
-						validateAndAddCity(user, request);
-						validateAndAddStarsign(user, request);
-						validateAndAddInterests(user, request);
 						if(isOnline(request)){
 							UserDAO.updateUser(user);
 						} else{
 						UserDAO.addUser(user);
 						}
+						validateAndAddCity(user, request);
+						validateAndAddStarsign(user, request);
+						validateAndAddInterests(user, request);
+						UserDAO.updateUser(user);
 		} catch (InvalidProfileDataException ex) {
 			request.getSession().setAttribute("erroroMsgRegistration",
 					ex.getMessage());
@@ -184,12 +188,14 @@ public class RegisterServlet extends BaseTransactionalServlet {
 	}
 	private void validateAndAddStarsign(User user, HttpServletRequest request) {
 		String starsign = request.getParameter("starsign");
+		System.out.println("SS: "+starsign);
 		UserDAO.setUserStarsign(user, starsign);
 		
 	}
 	
 	private void validateAndAddInterests(User user, HttpServletRequest request) {
 		String interests = request.getParameter("interests");
+		System.out.println("IS: "+interests);
 		UserDAO.setUserInterest(user, interests);
 		
 	}
