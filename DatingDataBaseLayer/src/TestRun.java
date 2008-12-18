@@ -1,5 +1,9 @@
+import java.util.List;
+
 import db.dao.CityDAO;
 import db.dao.StarsignDAO;
+import db.dao.UserDAO;
+import db.entities.User;
 import db.session.Facade;
 import db.session.TransactionAction;
 
@@ -18,6 +22,29 @@ public class TestRun {
 			public void execute() {
 				System.out.println(StarsignDAO.getAllStarsigns());
 				System.out.println(CityDAO.getAllCities());
+				System.out.println("==================");
+//				UserDAO.incProfileVisits("john");
+				List<User> list = UserDAO.getTopTenMale();
+				for (User u : list){
+					System.out.println(u.getFullName() + " " + u.getProfileVisits());
+				}
+				System.out.println("==================");
+				list = UserDAO.search("john", null, null);
+				for (User u : list){
+					System.out.println("Search1 result: " + u.getFullName() + " " + u.getProfileVisits());
+				}
+				list = UserDAO.search(null, "София", null);
+				for (User u : list){
+					System.out.println("Search2 result: "+u.getFullName() + " " + u.getProfileVisits());
+				}
+				list = UserDAO.search(null, "Бургас", "skydiving");
+				for (User u : list){
+					System.out.println("Search3 result: "+u.getFullName() + " " + u.getProfileVisits());
+				}
+				
+				
+				
+				
 			}
 			
 		});		

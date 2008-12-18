@@ -1,11 +1,13 @@
 package db.entities;
 
+import java.sql.Blob;
+
 
 public class Picture {
 	private Long pictureId;
 	private User user;
 	private Long userId;
-	private org.hibernate.lob.SerializableBlob picture;
+	private Blob picture;
 	/**
 	 * This method sets the ID (primary key) for the row in the Pictures table.
 	 * For internal use only. 
@@ -26,14 +28,14 @@ public class Picture {
 	 * This method is used to set the picture for a particular user.
 	 * @param picture The picture that will be set.
 	 */
-	public void setPicture(org.hibernate.lob.SerializableBlob picture) {
+	public void setPicture(Blob picture) {
 		this.picture = picture;
 	}
 	/**
 	 * This method is used to access the picture for a particular user.
 	 * @return The picture instance.
 	 */
-	public org.hibernate.lob.SerializableBlob getPicture() {
+	public Blob getPicture() {
 		return picture;
 	}
 	/**

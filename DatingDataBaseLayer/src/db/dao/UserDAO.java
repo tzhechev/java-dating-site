@@ -1,12 +1,16 @@
 package db.dao;
 
+import java.sql.Blob;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.lob.SerializableBlob;
 
 import db.entities.City;
 import db.entities.Picture;
@@ -100,13 +104,70 @@ public class UserDAO {
 		Starsign usrStarsign = (Starsign)crit.uniqueResult();
 		usr.setStarsign(usrStarsign);
 	}
-	public static SerializableBlob getUserPicture(User usr){
+	public static Blob getUserPictureBlob(User usr){
 		Session hbSession = HibernateSessionManager.getCurrentSession();
 		Criteria crit = hbSession.createCriteria(Picture.class)
 		.add(Restrictions.eq("UserId", usr.getUserId()))
 		.setProjection(Projections.property("Picture"));
-		SerializableBlob blob = (SerializableBlob)crit.uniqueResult();
+		Blob blob = (Blob)crit.uniqueResult();
 		return blob;
-		
+	}
+	public static Picture getUserPicture(User usr){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
+		Criteria crit = hbSession.createCriteria(Picture.class)
+		.add(Restrictions.eq("UserId", usr.getUserId()));
+		Picture pic = (Picture)crit.uniqueResult();
+		return pic;
+	}
+	@SuppressWarnings("unchecked")
+	public static List<User> getTopTenMale(){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
+		Criteria crit = hbSession.createCriteria(User.class)
+			.add(Restrictions.eq("Gender", "M"))
+			.addOrder(Order.desc("ProfileVisits"))
+			.setMaxResults(10);
+		List<User> result = crit.list();
+		return result;
+	}
+	@SuppressWarnings("unchecked")
+	public static List<User> getTopTenFemale(){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
+		Criteria crit = hbSession.createCriteria(User.class)
+			.add(Restrictions.eq("Gender", "F"))
+			.addOrder(Order.desc("ProfileVisits"))
+			.setMaxResults(10);
+		List<User> result = crit.list();
+		return result;
+	}
+	public static void incProfileVisits(User usr){
+		Long pv = usr.getProfileVisits();
+		usr.setProfileVisits(pv+1);
+	}
+	public static void incProfileVisits(String uname){
+		User usr = getUserByName(uname);
+		Long pv = usr.getProfileVisits();
+		usr.setProfileVisits(pv+1);
+	}
+	@SuppressWarnings("unchecked")
+	public static List<User> search(String fname, String city, String interest){
+		Session hbSession = HibernateSessionManager.getCurrentSession();
+		Criteria crit = hbSession.createCriteria(User.class);
+		crit.createAlias("City", "c", CriteriaSpecification.INNER_JOIN);
+		crit.createAlias("Interests", "i", CriteriaSpecification.INNER_JOIN);
+		Disjunction critDisj = Restrictions.disjunction();
+		if (fname != null && !fname.equals("")){
+			critDisj.add(Restrictions.ilike("FullName", fname, MatchMode.ANYWHERE));
+		}
+		if (city != null && !city.equals("")){
+			critDisj.add(Restrictions.ilike("c.City", city, MatchMode.ANYWHERE));
+		}
+		if (interest != null && !interest.equals("")){
+			critDisj.add(Restrictions.ilike("i.Interest", interest, MatchMode.ANYWHERE));
+		}
+		crit.add(critDisj);
+		crit.addOrder(Order.desc("ProfileVisits"));
+		List<User> result = crit.list(); 
+		return result;
+
 	}
 }
