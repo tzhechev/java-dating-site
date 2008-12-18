@@ -34,7 +34,7 @@
 	</tr>
 	<tr>
 		<td>
-			<form action="../LoginServlet" method="post">
+			<form action="../TopTenServlet" method="post">
 			<table><tr>
 			<td><select name="gender">
 			<option value="female"><c:out value="female" /></option>
