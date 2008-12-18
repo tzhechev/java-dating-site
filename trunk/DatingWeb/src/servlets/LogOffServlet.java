@@ -49,7 +49,7 @@ public class LogOffServlet extends BaseTransactionalServlet {
 			IOException {
 		UserDAO.setUserOnline((User) request.getSession().getAttribute("onlineUser"), false);
 		request.getSession().invalidate();
-		redirect(request, response, "/DatingWeb/pages/login.jsp");
+		redirect(request, response, "./pages/login.jsp");
 
 	}
 

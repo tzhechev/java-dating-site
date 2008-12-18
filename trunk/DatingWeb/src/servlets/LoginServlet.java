@@ -73,12 +73,12 @@ public class LoginServlet extends BaseTransactionalServlet {
 				HibernateSessionManager.getCurrentSession().lock(user, LockMode.NONE);
 				request.getSession().setAttribute("onlineUserName",
 						user.getName());
-				redirect(request, response, "/DatingWeb/pages/homePersonal.jsp");
+				redirect(request, response, "./pages/homePersonal.jsp");
 			} else {
-				redirect(request, response, "/DatingWeb/pages/login.jsp");
+				redirect(request, response, "./pages/login.jsp");
 			}
 		} else {
-			redirect(request, response, "/DatingWeb/pages/register.jsp");
+			redirect(request, response, "./pages/register.jsp");
 							
 		}
 

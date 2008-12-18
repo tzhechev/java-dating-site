@@ -41,7 +41,7 @@ import db.entities.User;
 	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		List<Message> list = MessageDAO.getAllMessages();
 		request.getSession().setAttribute("messages", list);
-		redirect(request, response, "/DatingWeb/pages/chatMessages.jsp");
+		redirect(request, response, "./pages/chatMessages.jsp");
 		
 //		int interval = 5000; // 5 sec
 //		while(true){
