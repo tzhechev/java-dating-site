@@ -137,4 +137,24 @@
     <servlet-name>InitializeCityAndGenderServlet</servlet-name>
     <url-pattern>/InitializeCityAndGenderServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Images</display-name>
+    <servlet-name>Images</servlet-name>
+    <servlet-class>servlets.Images</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Images</servlet-name>
+    <url-pattern>/Images</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Upload</display-name>
+    <servlet-name>Upload</servlet-name>
+    <servlet-class>servlets.Upload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Upload</servlet-name>
+    <url-pattern>/Upload</url-pattern>
+  </servlet-mapping>
 </web-app>
