@@ -47,7 +47,9 @@ public class LogOffServlet extends BaseTransactionalServlet {
 	protected void doPost(final HttpServletRequest request,
 			final HttpServletResponse response) throws ServletException,
 			IOException {
-		UserDAO.setUserOnline((User) request.getSession().getAttribute("onlineUser"), false);
+		User user = (User) request.getSession().getAttribute("onlineUser");
+		UserDAO.setUserOnline(user, false);
+		UserDAO.updateUser(user);
 		request.getSession().invalidate();
 		redirect(request, response, "./pages/login.jsp");
 
