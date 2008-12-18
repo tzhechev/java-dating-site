@@ -13,6 +13,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import db.entities.City;
+import db.entities.Interest;
 import db.entities.Picture;
 import db.entities.Starsign;
 import db.entities.User;
@@ -128,6 +129,14 @@ public class UserDAO {
 			.setMaxResults(10);
 		List<User> result = crit.list();
 		return result;
+	}
+	public static void setUserInterest(User usr, String text){
+		Interest intr = usr.getInterests();
+		if (intr == null) {
+			intr=new Interest();
+		}
+		intr.setInterest(text);
+		usr.setInterests(intr);
 	}
 	@SuppressWarnings("unchecked")
 	public static List<User> getTopTenFemale(){
