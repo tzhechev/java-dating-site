@@ -39,8 +39,29 @@ import db.entities.User;
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String gender = request.getParameter("gender");
-		List<User> users = UserDAO.getAllUsers();
+		List<User> users = null;
+		if(gender.equals("M")){
+			users = UserDAO.getAllUsers();
+//			users = UserDAO.getTopTenMale();
+		} else {
+			users = UserDAO.getAllUsers();
+//			users = UserDAO.getTopTenFemale();
+		}
+		
 		request.getSession().setAttribute("topTen", users);
-		response.sendRedirect(request.getContextPath() + "/pages?topTen.jsp");
-	}   	  	    
+		redirect(request, response, "./pages/viewTopTen.jsp");
+	}
+	
+	protected void redirect(HttpServletRequest request,
+			HttpServletResponse response, String location) {
+		
+	
+			try {
+				response.sendRedirect(location);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
 }
