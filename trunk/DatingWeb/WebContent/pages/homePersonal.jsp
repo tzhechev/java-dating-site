@@ -20,7 +20,7 @@
 			</td>
 			<td align="center">
 					
-					<form method="link" action="/DatingWeb/pages/register.jsp">
+					<form method="link" action="register.jsp">
 						<input type="submit" VALUE="Change Profile">
 					</form>
 			</td>

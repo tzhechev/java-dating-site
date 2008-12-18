@@ -37,7 +37,7 @@
 		</td>
 	</tr>
 </table>
-</form><div align="center"><form method="link" action="/DatingWeb/pages/homePersonal.jsp"><input
+</form><div align="center"><form method="link" action="./pages/homePersonal.jsp"><input
 	type="submit" VALUE="Обратно към профил"></form>
 </div>
 

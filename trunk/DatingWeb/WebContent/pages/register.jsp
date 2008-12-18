@@ -75,7 +75,7 @@ textarea {
 	<tr>
 		<td align="right">Интереси</td>
 		<td><textarea name="interests" cols="36" rows="5";>
-		<c:out value="${sessionScope.onlineUser.interests.Interest}" />
+		<c:out value="${sessionScope.onlineUser.interests.interest}" />
 		</textarea></td>
 
 	</tr>
