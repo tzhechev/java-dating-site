@@ -81,6 +81,11 @@ public class RegisterServlet extends BaseTransactionalServlet {
 						validateAndAddStarsign(user, request);
 						validateAndAddInterests(user, request);
 						UserDAO.updateUser(user);
+						if(isOnline(request)){
+							response.sendRedirect("./pages/homePersonal.jsp");
+						} else {
+								response.sendRedirect("./pages/login.jsp");
+						}
 		} catch (InvalidProfileDataException ex) {
 			request.getSession().setAttribute("erroroMsgRegistration",
 					ex.getMessage());
