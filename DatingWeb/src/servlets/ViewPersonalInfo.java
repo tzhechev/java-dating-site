@@ -14,7 +14,7 @@ import db.session.TransactionAction;
  * Servlet implementation class for Servlet: ViewPersonalInfo
  *
  */
- public class ViewPersonalInfo extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
+ public class ViewPersonalInfo extends BaseTransactionalServlet {
    static final long serialVersionUID = 1L;
    
     /* (non-Java-doc)
@@ -28,16 +28,13 @@ import db.session.TransactionAction;
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(final HttpServletRequest request,final HttpServletResponse response) throws ServletException, IOException {
-		Facade.doInTransaction(new TransactionAction(){
-
-			@Override
-			public void execute() {
+		
 				// TODO Auto-generated method stub
 				String userName =(String) request.getSession().getAttribute("onlineUserName");
 //				String userName = request.getParameter("username");
 //				String password = request.getParameter("password");
 				User user = UserDAO.getUserByName(userName);
-				request.getSession().setAttribute("onlineUser", user);
+//				request.getSession().setAttribute("onlineUser", user);
 				redirect(request, response,"/pages/viewProfile.jsp" );
 //				if (user != null) {
 //					if (user.getPassword().equals(password)){
@@ -50,9 +47,7 @@ import db.session.TransactionAction;
 //				} else {
 //					redirect(request, response,"/pages/register.jsp" );
 //				}				
-			}
 			
-		});
 
 	} 
 	protected void redirect(HttpServletRequest request,
