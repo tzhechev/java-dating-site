@@ -8,9 +8,10 @@
     <param name="sequence">SEQ_PICTURES</param>
    </generator>
   </id>
-  <property generated="never" lazy="false" name="Picture" type="blob">
-   <column name="USER_PICTURE" not-null="true" sql-type="BLOB"/>
+  <property generated="never" lazy="false" name="Picture">
+   <column name="USER_PICTURE" not-null="true"/>
   </property>
-  <property column="USER_ID" insert="false" name="UserId" type="long" unique="true" update="false"/>
+  <property column="USER_ID" generated="never" insert="true"
+   lazy="false" name="UserId" type="long" unique="true" update="false"/>
  </class>
 </hibernate-mapping>
