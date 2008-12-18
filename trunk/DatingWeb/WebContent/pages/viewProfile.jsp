@@ -24,35 +24,43 @@ background-color:#33FF33;
 <table align="center"  cellspacing="1" cellpadding="15">
 	<tr>
 		<td align="right">Име</td>
-		<td><c:out value="${sessionScope.onlineUser.fullName}" /></td>
+		<td><c:out value="${sessionScope.userToView.fullName}" /></td>
 	</tr>
 	<tr>
 		<td align="right">Местоживеене</td>
-		<td><c:out value="${sessionScope.onlineUser.city}" /></td>
+		<td><c:out value="${sessionScope.userToView.city}" /></td>
 	</tr>
 	<tr>
 		<td align="right">Пол</td>
-		<td><c:out value="${sessionScope.onlineUser.gender}" /></td>
+		<td><c:out value="${sessionScope.userToView.gender}" /></td>
 	</tr>
 	<tr>
 		<td align="right">Възраст</td>
-		<td><c:out value="${sessionScope.onlineUser.age}" /></td>
+		<td><c:out value="${sessionScope.userToView.age}" /></td>
 	</tr>
 	<tr>
 		<td align="right">Зодия</td>
-		<td><c:out value="${sessionScope.onlineUser.starsign}" /></td>
+		<td><c:out value="${sessionScope.userToView.starsign}" /></td>
 	</tr>
 	<tr>
 		<td align="right">Брой посещения на профила</td>
-		<td><c:out value="${sessionScope.onlineUser.profileVisits}" /></td>
+		<td><c:out value="${sessionScope.userToView.profileVisits}" /></td>
 	</tr>
 	<tr>
 		<td align="right">Интереси</td>
-		<td><c:out value="${sessionScope.onlineUser.interests.interest}" /></td>
+		<td><c:out value="${sessionScope.userToView.interests.interest}" /></td>
 	</tr>
 </table>
+<c:if test="${onlineUser != null}">
 <div align="center"><form method="link" action="pages/register.jsp"><input
 	type="submit" VALUE="Change Profile"></form>
 </div>
+</c:if>
+<c:if test="${onlineUser == null}">
+<div align="center"><form method="link" action="pages/login.jsp">
+						<input type="submit" VALUE="Log In">
+					</form>
+					</div>
+</c:if>
 </body>
 </html>
