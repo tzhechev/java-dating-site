@@ -186,14 +186,12 @@ public class RegisterServlet extends BaseTransactionalServlet {
 
 	private void validateAndAddStarsign(User user, HttpServletRequest request) {
 		String starsign = request.getParameter("starsign");
-		System.out.println("SS: " + starsign);
 		UserDAO.setUserStarsign(user, starsign);
 
 	}
 
 	private void validateAndAddInterests(User user, HttpServletRequest request) {
 		String interests = request.getParameter("interests");
-		System.out.println("IS: " + interests);
 		UserDAO.setUserInterest(user, interests);
 
 	}
