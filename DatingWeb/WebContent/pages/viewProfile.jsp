@@ -40,7 +40,7 @@ background-color:#33FF33;
 	</tr>
 	<tr>
 		<td align="right">Зодия</td>
-		<td><c:out value="${sessionScope.onlineUser.starSign}" /></td>
+		<td><c:out value="${sessionScope.onlineUser.starsign}" /></td>
 	</tr>
 	<tr>
 		<td align="right">Брой посещения на профила</td>
@@ -48,7 +48,7 @@ background-color:#33FF33;
 	</tr>
 	<tr>
 		<td align="right">Интереси</td>
-		<td><c:out value="${sessionScope.onlineUser.interests}" /></td>
+		<td><c:out value="${sessionScope.onlineUser.interests.interest}" /></td>
 	</tr>
 </table>
 <div align="center"><form method="link" action="/DatingWeb/pages/register.jsp"><input
