@@ -148,9 +148,9 @@ public class RegisterServlet extends BaseTransactionalServlet {
 			throws InvalidProfileDataException {
 		String password = request.getParameter("password");
 		String passwordRep = request.getParameter("passConfirm");
-		if(isOnline(request) && (password == null) && (passwordRep == null)){ //Online user does not want to change password
+		if(isOnline(request) && (password.trim().equals("")) && (passwordRep.trim().equals(""))){ //Online user does not want to change password
 			return;
-		}
+		} 
 		if(!password.equals(passwordRep)){
 			throw new InvalidProfileDataException("Повторението на паролата не съвпада.");
 		} else if (!validateSpellingOfUserNameOrPassword(password)){
