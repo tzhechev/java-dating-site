@@ -41,7 +41,7 @@ import db.entities.User;
 //		List<User> list = UserDAO.getAllUsers();
 		List<String> list = UserDAO.getAllUserNames();
 		request.getSession().setAttribute("listNames", list);
-		redirect(request, response, "/DatingWeb/pages/chatMain.jsp");
+		redirect(request, response, "./pages/chatMain.jsp");
 		String message = request.getParameter("message");
 		String receiverName = request.getParameter("receiver");
 		if(receiverName!=null && message !=null){
@@ -50,7 +50,7 @@ import db.entities.User;
 			msg.setTime(new Date());
 			msg.setFromUserId(((User)request.getSession().getAttribute("onlineUser")).getUserId());
 			msg.setText(message);
-			MessageDAO.addMessage(msg);
+			MessageDAO.addMessage((User)request.getSession().getAttribute("onlineUser"), receiverName, message);
 		}
 		
 		

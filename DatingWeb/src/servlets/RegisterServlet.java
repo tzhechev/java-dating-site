@@ -79,9 +79,9 @@ public class RegisterServlet extends BaseTransactionalServlet {
 						validateAndAddPassword(user, request, password);
 						user.setFullName(fullName);
 						if (gender.equals("male")) {
-							user.setGender("m");
+							user.setGender("M");
 						} else {
-							user.setGender("f");
+							user.setGender("F");
 						}
 //						user.setCity(city);
 						validateAndAddAge(user, request);
@@ -98,7 +98,7 @@ public class RegisterServlet extends BaseTransactionalServlet {
 			request.getSession().setAttribute("erroroMsgRegistration",
 					ex.getMessage());
 			try {
-				response.sendRedirect("/DatingWeb/pages/register.jsp");
+				response.sendRedirect("./pages/register.jsp");
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
