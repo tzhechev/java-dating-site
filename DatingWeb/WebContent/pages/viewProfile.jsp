@@ -51,7 +51,7 @@ background-color:#33FF33;
 		<td><c:out value="${sessionScope.onlineUser.interests.interest}" /></td>
 	</tr>
 </table>
-<div align="center"><form method="link" action="/DatingWeb/pages/register.jsp"><input
+<div align="center"><form method="link" action="pages/register.jsp"><input
 	type="submit" VALUE="Change Profile"></form>
 </div>
 </body>
