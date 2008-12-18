@@ -66,7 +66,7 @@ public class LoginServlet extends BaseTransactionalServlet {
 		
 		//				
 		User user = UserDAO.getUserByName(userName);
-		if (user != null) {
+		if (userName != null) {
 			if (user.getPassword().equals(password)) {
 				UserDAO.setUserOnline(user, true);
 				request.getSession().setAttribute("onlineUser", user);
