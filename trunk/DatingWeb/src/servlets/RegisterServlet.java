@@ -54,12 +54,7 @@ public class RegisterServlet extends BaseTransactionalServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-//		String username = request.getParameter("username");
-//		String password = request.getParameter("password");
-//		
-//		String fullName = request.getParameter("fullName");
-//		String gender = request.getParameter("gender");
-//		String city = request.getParameter("city");
+
 
 //		User onlineUser = (User)request.getSession().getAttribute("onlineUser");
 		User user = null;
