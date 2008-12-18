@@ -117,4 +117,14 @@
     <servlet-name>ProbaServlet</servlet-name>
     <url-pattern>/ProbaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TopTenServlet</display-name>
+    <servlet-name>TopTenServlet</servlet-name>
+    <servlet-class>servlets.TopTenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TopTenServlet</servlet-name>
+    <url-pattern>/TopTenServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
