@@ -37,11 +37,11 @@
 		</td>
 	</tr>
 </table>
-</form><div align="center"><form method="link" action="./pages/homePersonal.jsp"><input
+</form><div align="center"><form method="link" action="./homePersonal.jsp"><input
 	type="submit" VALUE="Обратно към профил"></form>
 </div>
 
-<a href="homePersonal.jsp">Register</a>
+<!-- <a href="homePersonal.jsp">Register</a> -->
 
 
 
