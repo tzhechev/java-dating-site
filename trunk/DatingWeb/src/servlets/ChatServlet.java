@@ -44,6 +44,7 @@ import db.entities.User;
 		redirect(request, response, "./pages/chatMain.jsp");
 		String message = request.getParameter("message");
 		String receiverName = request.getParameter("receiver");
+		request.getSession().setAttribute("receiverName", receiverName);
 		if(receiverName!=null && message !=null){
 			Message msg = new Message();
 			msg.setToUserId(UserDAO.getUserByName(receiverName).getUserId());

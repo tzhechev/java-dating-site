@@ -68,7 +68,7 @@ public class LoginServlet extends BaseTransactionalServlet {
 		//				
 		User user = UserDAO.getUserByName(userName);
 		if (userName != null) {
-			if (user.getPassword().equals(password)) {
+			if ( password!= null && user != null && user.getPassword().equals(password)) {
 				UserDAO.setUserOnline(user, true);
 				request.getSession().setAttribute("onlineUser", user);
 				HibernateSessionManager.getCurrentSession().lock(user, LockMode.NONE);

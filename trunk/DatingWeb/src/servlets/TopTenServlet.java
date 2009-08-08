@@ -39,13 +39,20 @@ import db.entities.User;
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String gender = request.getParameter("gender");
+		String check = request.getParameter("requestFromSearch");
+//		System.out.println("AAAAAAAAAAAAAAAAAAAAa" + check);
 		List<User> users = null;
-		if(gender.equals("M")){
-			users = UserDAO.getAllUsers();
-//			users = UserDAO.getTopTenMale();
+		if((check != null) && check.equals("A")){
+			String fullName = request.getParameter("fullName");
+			String city = request.getParameter("city");
+			String interests = request.getParameter("interests");
+			users = UserDAO.search(fullName, city, interests);
+		} else if (gender.equals("M")){
+//			users = UserDAO.getAllUsers();
+			users = UserDAO.getTopTenMale();
 		} else {
-			users = UserDAO.getAllUsers();
-//			users = UserDAO.getTopTenFemale();
+//			users = UserDAO.getAllUsers();
+			users = UserDAO.getTopTenFemale();
 		}
 		
 		request.getSession().setAttribute("topTen", users);
