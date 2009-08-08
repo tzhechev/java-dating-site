@@ -45,7 +45,14 @@ import db.entities.Starsign;
 		List<Starsign> starsigns = StarsignDAO.getAllStarsigns();
 		request.getSession().setAttribute("cities", cities);
 		request.getSession().setAttribute("starsigns", starsigns);
-		redirect(request, response, "./pages/register.jsp");
+		request.getSession().setAttribute("male", "M");
+		request.getSession().setAttribute("female", "F");
+		String check = request.getParameter("requestFromSearch");
+		if(check != null && check.equals("A")){
+			redirect(request, response, "./pages/searchByCriteria.jsp");
+		} else{
+			redirect(request, response, "./pages/register.jsp");
+		}
 	} 
 	
 	protected void redirect(HttpServletRequest request,

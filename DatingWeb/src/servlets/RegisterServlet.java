@@ -65,6 +65,7 @@ public class RegisterServlet extends BaseTransactionalServlet {
 			validateAndAddUserName(user, request);
 			validateAndAddPassword(user, request);
 			validateAndAddFullName(user, request);
+			validateAndAddEmail(user, request);
 			validateAndAddAge(user, request);
 			validateAndAddGender(user, request);
 			if (isOnline(request)) {
@@ -76,11 +77,13 @@ public class RegisterServlet extends BaseTransactionalServlet {
 			validateAndAddStarsign(user, request);
 			validateAndAddInterests(user, request);
 			UserDAO.updateUser(user);
+			request.getSession().removeAttribute("erroroMsgRegistration");
 			if (isOnline(request)) {
 				response.sendRedirect("./pages/homePersonal.jsp");
 			} else {
 				response.sendRedirect("./pages/login.jsp");
 			}
+			
 		} catch (InvalidProfileDataException ex) {
 			request.getSession().setAttribute("erroroMsgRegistration",
 					ex.getMessage());
@@ -93,6 +96,8 @@ public class RegisterServlet extends BaseTransactionalServlet {
 		}
 
 	}
+
+	
 
 	private boolean isOnline(HttpServletRequest request) {
 		User onlineUser = (User) request.getSession()
@@ -194,6 +199,16 @@ public class RegisterServlet extends BaseTransactionalServlet {
 		String interests = request.getParameter("interests");
 		UserDAO.setUserInterest(user, interests);
 
+	}
+	
+	private void validateAndAddEmail(User user, HttpServletRequest request) {
+		String pattern = "[a-zA-Z0-9_]+[.[a-zA-Z0-9]+]*@[a-zA-Z0-9_]+[.[a-zA-Z]+]+";
+		String email = request.getParameter("email");
+		if(email.matches(pattern)){
+		user.setEmail(email);
+		} else throw new InvalidProfileDataException(
+		"Невалиден адрес за електронна поща");
+		
 	}
 
 }

@@ -1,10 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +37,14 @@ import db.entities.User;
 	 * @see javax.servlet.http.HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-		List<Message> list = MessageDAO.getAllMessages();
+		User onlineUser = (User)request.getSession().getAttribute("onlineUser");
+		String toUserName =(String)request.getSession().getAttribute("receiverName");
+		List<Message> list = null;
+		if(toUserName != null){
+			list = MessageDAO.getConversation(onlineUser, toUserName);
+		} else {
+			list = new ArrayList<Message>();
+		}
 		request.getSession().setAttribute("messages", list);
 		redirect(request, response, "./pages/chatMessages.jsp");
 		
