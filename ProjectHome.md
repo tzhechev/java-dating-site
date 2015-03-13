@@ -1,0 +1,1 @@
+The dating site should include functionality for messaging between users, login/register, profiles (with photos) and a separate admin panel in Swing.
